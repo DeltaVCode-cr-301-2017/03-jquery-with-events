@@ -91,9 +91,15 @@ articleView.setTeasers = function() {
   //       "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
   //       Ideally, we'd attach this as just 1 event handler on the #articles section, and let it
   //       process any .read-on clicks that happen within child nodes.
-
+  $('#articles').on('click', '.read-on', function(event){
+    event.preventDefault();
+    //console.log($(this));
+    console.log($(this).parent('article'));
+    $(this).parent('article').children().children().show();
+    $(this).hide();
+  });
   // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
-
+  console.log('teasers set');
 };
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready.
@@ -102,4 +108,5 @@ $(document).ready(function() {
   articleView.handleAuthorFilter();
   articleView.handleCategoryFilter();
   articleView.handleMainNav();
+  articleView.setTeasers();
 });
