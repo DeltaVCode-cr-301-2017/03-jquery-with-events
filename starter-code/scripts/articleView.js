@@ -41,9 +41,6 @@ articleView.handleAuthorFilter = function() {
       $('article[data-author="' + $(this).val() + '"]').fadeIn();
     } else {
       $('article').not('.template').show();
-        // TODO: If the select box was changed to an option that is blank, we should
-        //       show all the articles, except the one article we are using as a template.
-
     }
     $('#category-filter').val('');
   });
