@@ -42,25 +42,35 @@ articleView.handleAuthorFilter = function() {
       var authorSelect = $(this).val();
       var getAuthor = '"'+authorSelect+'"';
       $('article[data-author='+getAuthor+']').show();
-      // TODO: If the select box was changed to an option that has a value, we need to hide all the articles,
+      // TODO:DONE If the select box was changed to an option that has a value, we need to hide all the articles,
       //       and then show just the ones that match for the author that was selected.
       //       Use an "attribute selector" to find those articles, and fade them in for the reader.
 
     } else {
-      // TODO: If the select box was changed to an option that is blank, we should
+      $('article').not('.template').show();
+      // TODO:DONE If the select box was changed to an option that is blank, we should
       //       show all the articles, except the one article we are using as a template.
-
     }
     $('#category-filter').val('');
   });
 };
 
 articleView.handleCategoryFilter = function() {
+  $('#category-filter').on('change', function() {
+    if ($(this).val()) {
+      $('article').hide();
+      var categorySelect = $(this).val();
+      var getCategory = '"'+categorySelect+'"';
+      $('article[data-category='+getCategory+']').show();
+    } else {
+      $('article').not('.template').show();
   // TODO: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
   //       When an option with a value is selected, hide all the articles, then reveal the matches.
   //       When the blank (default) option is selected, show all the articles, except for the template.
   //       Be sure to reset the #author-filter while you are at it!
-
+    }
+    $('#author-filter').val('');
+  });
 };
 
 articleView.handleMainNav = function() {
@@ -91,4 +101,5 @@ articleView.setTeasers = function() {
 $(document).ready(function() {
   articleView.populateFilters();
   articleView.handleAuthorFilter();
+  articleView.handleCategoryFilter();
 })
