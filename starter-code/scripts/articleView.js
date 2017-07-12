@@ -77,10 +77,14 @@ articleView.setTeasers = function() {
   $('#articles').on('click', '.read-on', function(event) {
     event.preventDefault();
     $(this).siblings('section').children().show();
+    $(this).html('Read Less &larr;').toggleClass('read-on').toggleClass('read-less');
   });
 
-  // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
-
+  $('#articles').on('click', '.read-less', function(event){
+    event.preventDefault();
+    $(this).siblings('.article-body').children('*:nth-of-type(n+2)').hide();
+    $(this).html('Read On &rarr;').toggleClass('read-on').toggleClass('read-less');
+  });
 };
 
 $(document).ready(function() {
