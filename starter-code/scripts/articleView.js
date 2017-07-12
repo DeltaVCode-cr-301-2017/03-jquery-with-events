@@ -74,8 +74,11 @@ articleView.handleMainNav = function() {
   //       single .tab-content section that is associated with the clicked .tab element.
   //       So: You need to dynamically build a selector string with the correct ID, based on the
   //       data available to you on the .tab element that was clicked.
-  $('.main-nav').on('click', 'li', function(){
-    console.log(this);
+  $('.main-nav').on('click', 'li.tab', function(){
+    $('.tab-content').hide();
+    var activeTab = $(this).data('content');
+    var id = '#' + activeTab;
+    $(id).fadeIn();
   });
   $('.main-nav .tab:first').click(); // Let's now trigger a click on the first .tab element, to set up the page.
 };
